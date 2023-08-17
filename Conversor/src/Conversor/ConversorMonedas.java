@@ -38,7 +38,4 @@ public class ConversorMonedas {
 		
 		JOptionPane.showMessageDialog(null, "Tienes " + won + "₩");
 	}
-	
-	
-
 }

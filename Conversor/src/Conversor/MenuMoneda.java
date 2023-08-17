@@ -5,11 +5,12 @@ import javax.swing.JOptionPane;
 public class MenuMoneda {
 
 	ConversorMonedas monedas = new ConversorMonedas();
+	ConversorInverso pesos = new ConversorInverso();
 
 	public void menuPrincipal() {
 		boolean salir = true;
 		while (salir) {
-			String menu = (JOptionPane.showInputDialog(null, "Seleccione na opcion de conversion", "Menu",
+			String menu = (JOptionPane.showInputDialog(null, "Seleccione una opcion de conversion", "Menu",
 					JOptionPane.QUESTION_MESSAGE, null,
 					new Object[] { "Conversor de Moneda", "Conversor de Temperatura" }, "Seleccion")).toString();
 
@@ -43,6 +44,20 @@ public class MenuMoneda {
 	}
 
 	public void menuOpciones(double entrada) {
+		String opcion = (JOptionPane.showInputDialog(null, "Seleccione una opcion", "Menu",
+				JOptionPane.QUESTION_MESSAGE, null,
+				new Object[] { "Conversor de Moneda a Pesos(ARG)", "Conversor de Pesos(ARG) a Moneda" }, "Seleccion"))
+				.toString();
+
+		if (opcion.equals("Conversor de Moneda a Pesos(ARG)")) {
+			menuPesoAMoneda(entrada);
+		} else {
+			menuMonedaAPeso(entrada);
+		}
+
+	}
+
+	public void menuPesoAMoneda(double entrada) {
 		String opcion = (JOptionPane.showInputDialog(null, "Elige la moneda a convertir tus pesos(ARG)", "Monedas",
 				JOptionPane.PLAIN_MESSAGE, null, new Object[] { "Dolar", "Euro", "Libras Esterlinas", "Yen", "Won" },
 				"Seleccion")).toString();
@@ -62,6 +77,30 @@ public class MenuMoneda {
 			break;
 		case "Won":
 			monedas.ConvertirPesosAWon(entrada);
+			break;
+		}
+	}
+
+	public void menuMonedaAPeso(double entrada) {
+		String opcion = (JOptionPane.showInputDialog(null, "Elige la moneda a convertir en pesos(ARG)", "Monedas",
+				JOptionPane.PLAIN_MESSAGE, null, new Object[] { "Dolar", "Euro", "Libras Esterlinas", "Yen", "Won" },
+				"Seleccion")).toString();
+
+		switch (opcion) {
+		case "Dolar":
+			pesos.ConvertirDolaresAPesos(entrada);
+			break;
+		case "Euro":
+			pesos.ConvertirEurosAPesos(entrada);
+			break;
+		case "LibrasEsterlinas":
+			pesos.ConvertirLibrasAPesos(entrada);
+			break;
+		case "Yen":
+			pesos.ConvertirYenAPesos(entrada);
+			break;
+		case "Won":
+			pesos.ConvertirWonAPesos(entrada);
 			break;
 		}
 	}
